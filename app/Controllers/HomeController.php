@@ -25,13 +25,13 @@ class HomeController extends BaseController
 {
     public function index()
     {
-        return $this->view()->display('index.tpl');
+        return $this->view()->display(Tools::getLanguagePath('index.tpl'));
     }
 
     public function code()
     {
         $codes = InviteCode::where('user_id', '=', '0')->take(10)->get();
-        return $this->view()->assign('codes', $codes)->display('code.tpl');
+        return $this->view()->assign('codes', $codes)->display(Tools::getLanguagePath('code.tpl'));
     }
 
     public function down()

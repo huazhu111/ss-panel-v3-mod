@@ -12,6 +12,21 @@ class Tools
 {
 
     /**
+     * 判断是否有language的cookie，没有的话设置为zh 
+     */
+    public static function getLanguagePath($view = "404.tpl")
+    {
+        $lang = "zh"
+        if (isset($_COOKIE["lang"])){
+            $lang = $_COOKIE["lang"];
+        }
+        else {
+            $_COOKIE["lang"] = "zh";
+        }
+        return "{$lang}/{$view}";
+    }
+
+    /**
      * 根据流量值自动转换单位输出
      */
     public static function flowAutoShow($value = 0)
