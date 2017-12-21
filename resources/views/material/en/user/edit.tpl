@@ -387,7 +387,7 @@
 
 
 
-					{include file='dialog.tpl'}
+					{include file='../dialog.tpl'}
 
 			</section>
 		</div>
@@ -399,7 +399,7 @@
 
 
 
-{include file='user/footer.tpl'}
+{include file='./footer.tpl'}
 
 
 <script>

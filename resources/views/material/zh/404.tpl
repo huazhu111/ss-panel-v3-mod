@@ -56,4 +56,4 @@
 	</main>
 
 
-{include file='footer.tpl'}
+{include file='./footer.tpl'}

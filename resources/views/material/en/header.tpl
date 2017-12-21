@@ -64,7 +64,7 @@
 				<a class="menu-logo" href="/"><i class="icon icon-lg">restaurant_menu</i>&nbsp;Menu</a>
 				<ul class="nav">
 					<li>
-						<a  href="/"><i class="icon icon-lg">bookmark_border</i>&nbsp;TOP</a>
+						<a  href="/"><i class="icon icon-lg">bookmark_border</i>&nbsp;Top</a>
 					</li>
 					<li>
 						<a  href="/tos"><i class="icon icon-lg">text_format</i>&nbsp;TOS</a>
@@ -99,7 +99,7 @@
 			document.cookie = cname + "=" + cvalue + "; " + expires;
 		}
 		document.getElementById('language').addEventListener('click',()=>{
-			setCookie('language','en',365);
+			setCookie('language','zh',365);
 			location.reload(true);
 		})
 	</script>

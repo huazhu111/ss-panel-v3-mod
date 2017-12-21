@@ -145,7 +145,7 @@
 						
 						
 								
-						{include file='dialog.tpl'}
+						{include file='../dialog.tpl'}
 						
 						
 						<div aria-hidden="true" class="modal modal-va-middle fade" id="tos_modal" role="dialog" tabindex="-1">
@@ -155,7 +155,7 @@
 										<h2 class="modal-title">注册 TOS</h2>
 									</div>
 									<div class="modal-inner">
-										{include file='reg_tos.tpl'}
+										{include file='../reg_tos.tpl'}
 									</div>
 									<div class="modal-footer">
 										<p class="text-right"><button class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal" type="button" id="cancel">我不服</button><button class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal" id="reg" type="button">资慈</button></p>
@@ -171,7 +171,7 @@
 		</div>
 	</main>
 	
-{include file='footer.tpl'}
+{include file='../footer.tpl'}
 
 
 

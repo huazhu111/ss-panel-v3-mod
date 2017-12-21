@@ -384,7 +384,7 @@
 
 						{/if}
 
-						{include file='dialog.tpl'}
+						{include file='../dialog.tpl'}
 
 					</div>
 
@@ -400,7 +400,7 @@
 
 
 
-{include file='user/footer.tpl'}
+{include file='./footer.tpl'}
 
 <script src="/theme/material/js/shake.js/shake.js"></script>
 

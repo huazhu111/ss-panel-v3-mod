@@ -383,7 +383,7 @@
 			document.cookie = cname + "=" + cvalue + "; " + expires;
 		}
 		document.getElementById('language').addEventListener('click',()=>{
-			setCookie('language','en',365);
+			setCookie('language','zh',365);
 			location.reload(true);
 		})
 	</script>

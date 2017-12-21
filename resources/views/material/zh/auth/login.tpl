@@ -153,7 +153,7 @@
 						</div>
 
 
-						{include file='dialog.tpl'}
+						{include file='../dialog.tpl'}
 
 
 
@@ -165,7 +165,7 @@
 		</div>
 	</main>
 
-{include file='footer.tpl'}
+{include file='../footer.tpl'}
 
 <script>
     $(document).ready(function(){

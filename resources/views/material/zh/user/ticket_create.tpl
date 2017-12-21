@@ -67,7 +67,7 @@
 						</div>
 					</div>
 					
-					{include file='dialog.tpl'}
+					{include file='../dialog.tpl'}
 
 							
 			</div>
@@ -82,7 +82,7 @@
 
 
 
-{include file='user/footer.tpl'}
+{include file='./footer.tpl'}
 
 
 

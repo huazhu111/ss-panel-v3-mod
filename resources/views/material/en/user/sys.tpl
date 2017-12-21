@@ -23,4 +23,4 @@
         </div>
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
-{include file='user/footer.tpl'}
+{include file='./footer.tpl'}
