@@ -17,11 +17,11 @@ class Tools
     public static function getLanguagePath($view = "404.tpl")
     {
         $lang = "zh";
-        if (isset($_COOKIE["lang"])){
-            $lang = $_COOKIE["lang"];
+        if (isset($_COOKIE["language"])){
+            $lang = $_COOKIE["language"];
         }
         else {
-            $_COOKIE["lang"] = "zh";
+            $_COOKIE["language"] = "zh";
         }
         return "{$lang}/{$view}";
     }
