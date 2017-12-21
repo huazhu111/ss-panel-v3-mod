@@ -16,7 +16,7 @@ class Tools
      */
     public static function getLanguagePath($view = "404.tpl")
     {
-        $lang = "zh"
+        $lang = "zh";
         if (isset($_COOKIE["lang"])){
             $lang = $_COOKIE["lang"];
         }
