@@ -81,7 +81,7 @@
 					</li>
 					{else}
 					<li>
-						<a  href="/auth/login"><i class="icon icon-lg">vpn_key</i>&nbsp;Sign In</a>
+						<a  href="/auth/login"><i class="icon icon-lg">vpn_key</i>&nbsp;Sign in</a>
 					</li>
 					<li>
 						<a  href="/auth/register"><i class="icon icon-lg">pregnant_woman</i>&nbsp;Reg</a>
@@ -99,7 +99,7 @@
 			document.cookie = cname + "=" + cvalue + "; " + expires;
 		}
 		document.getElementById('language').addEventListener('click',()=>{
-			setCookie('language','zh',365);
+			setCookie('language','en',365);
 			location.reload(true);
 		})
 	</script>

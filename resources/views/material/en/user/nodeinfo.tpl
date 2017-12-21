@@ -1,7 +1,7 @@
 
 
 
-{include file='user/header_info.tpl'}
+{include file='./header_info.tpl'}
 
 
 {$ssr_prefer = URL::SSRCanConnect($user, $mu)}

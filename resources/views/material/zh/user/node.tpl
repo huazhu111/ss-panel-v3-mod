@@ -6,7 +6,7 @@
 
 
 
-{include file='user/main.tpl'}
+{include file='./main.tpl'}
 
 
 <script src="//cdn.staticfile.org/canvasjs/1.7.0/canvasjs.js"></script>

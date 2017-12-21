@@ -4,7 +4,7 @@
 
 
 
-{include file='user/main.tpl'}
+{include file='./main.tpl'}
 
 {$ssr_prefer = URL::SSRCanConnect($user, 0)}
 

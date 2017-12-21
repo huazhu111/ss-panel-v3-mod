@@ -1,4 +1,4 @@
-{include file='user/main.tpl'}
+{include file='./main.tpl'}
 
 <div class="content-wrapper">
     <section class="content-header">
