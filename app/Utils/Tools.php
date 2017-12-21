@@ -12,7 +12,7 @@ class Tools
 {
 
     /**
-     * 判断是否有language的cookie，没有的话设置为zh 
+     * 判断是否有lang的cookie，没有的话设置为zh 
      */
     public static function getLanguagePath($view = "404.tpl")
     {

@@ -82,7 +82,7 @@ class UserController extends BaseController
                 ->assign("router_token_without_mu", $router_token_without_mu)->assign("acl_token", $acl_token)
                 ->assign('ann', $Ann)->assign('geetest_html', $GtSdk)->assign("ios_token", $ios_token)
                 ->assign('enable_duoshuo', Config::get('enable_duoshuo'))->assign('duoshuo_shortname', Config::get('duoshuo_shortname'))
-                ->assign("user", $this->user)->registerClass("URL", "App\Utils\URL")->assign('baseUrl', Config::get('baseUrl'))->display('user/index.tpl');
+                ->assign("user", $this->user)->registerClass("URL", "App\Utils\URL")->assign('baseUrl', Config::get('baseUrl'))->display(Tools::getLanguagePath('user/index.tpl'));
     }
 
 
@@ -91,7 +91,7 @@ class UserController extends BaseController
     {
         $Speedtest=Speedtest::where("datetime", ">", time()-Config::get('Speedtest_duration')*3600)->orderBy('datetime', 'desc')->get();
 
-        return $this->view()->assign('speedtest', $Speedtest)->assign('hour', Config::get('Speedtest_duration'))->display('user/lookingglass.tpl');
+        return $this->view()->assign('speedtest', $Speedtest)->assign('hour', Config::get('Speedtest_duration'))->display(Tools::getLanguagePath('user/lookingglass.tpl'));
     }
 
 
@@ -105,7 +105,7 @@ class UserController extends BaseController
         }
         $codes = Code::where('type', '<>', '-2')->where('userid', '=', $this->user->id)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
         $codes->setPath('/user/code');
-        return $this->view()->assign('codes', $codes)->assign('pmw', Pay::getHTML($this->user))->display('user/code.tpl');
+        return $this->view()->assign('codes', $codes)->assign('pmw', Pay::getHTML($this->user))->display(Tools::getLanguagePath('user/code.tpl'));
     }
 
 
@@ -128,7 +128,7 @@ class UserController extends BaseController
             }
         )->where("isused", 1)->orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
         $codes->setPath('/user/donate');
-        return $this->view()->assign('codes', $codes)->assign('total_in', Code::where('isused', 1)->where('type', -1)->sum('number'))->assign('total_out', Code::where('isused', 1)->where('type', -2)->sum('number'))->display('user/donate.tpl');
+        return $this->view()->assign('codes', $codes)->assign('total_in', Code::where('isused', 1)->where('type', -1)->sum('number'))->assign('total_out', Code::where('isused', 1)->where('type', -2)->sum('number'))->display(Tools::getLanguagePath('user/donate.tpl'));
     }
 
 
@@ -327,7 +327,7 @@ class UserController extends BaseController
         $id = $args['id'];
         $point_node=Node::find($id);
         $prefix=explode(" - ", $point_node->name);
-        return $this->view()->assign('point_node', $point_node)->assign('prefix', $prefix[0])->assign('id', $id)->display('user/nodeajax.tpl');
+        return $this->view()->assign('point_node', $point_node)->assign('prefix', $prefix[0])->assign('id', $id)->display(Tools::getLanguagePath('user/nodeajax.tpl'));
     }
 
 
@@ -446,7 +446,7 @@ class UserController extends BaseController
         $node_prefix=(object)$node_prefix;
         $node_order=(object)$node_order;
         $tools = new Tools();
-        return $this->view()->assign('relay_rules', $relay_rules)->assign('tools', $tools)->assign('node_method', $node_method)->assign('node_muport', $node_muport)->assign('node_bandwidth', $node_bandwidth)->assign('node_heartbeat', $node_heartbeat)->assign('node_prefix', $node_prefix)->assign('node_prealive', $node_prealive)->assign('node_order', $node_order)->assign('user', $user)->assign('node_alive', $node_alive)->display('user/node.tpl');
+        return $this->view()->assign('relay_rules', $relay_rules)->assign('tools', $tools)->assign('node_method', $node_method)->assign('node_muport', $node_muport)->assign('node_bandwidth', $node_bandwidth)->assign('node_heartbeat', $node_heartbeat)->assign('node_prefix', $node_prefix)->assign('node_prealive', $node_prealive)->assign('node_order', $node_order)->assign('user', $user)->assign('node_alive', $node_alive)->display(Tools::getLanguagePath('user/node.tpl'));
     }
 
 
@@ -467,7 +467,7 @@ class UserController extends BaseController
 
             case 0:
                 if ((($user->class>=$node->node_class&&($user->node_group==$node->node_group||$node->node_group==0))||$user->is_admin)&&($node->node_bandwidth_limit==0||$node->node_bandwidth<$node->node_bandwidth_limit)) {
-                    return $this->view()->assign('node', $node)->assign('user', $user)->assign('mu', $mu)->assign('relay_rule_id', $relay_rule_id)->registerClass("URL", "App\Utils\URL")->display('user/nodeinfo.tpl');
+                    return $this->view()->assign('node', $node)->assign('user', $user)->assign('mu', $mu)->assign('relay_rule_id', $relay_rule_id)->registerClass("URL", "App\Utils\URL")->display(Tools::getLanguagePath('user/nodeinfo.tpl'));
                 }
             break;
 
@@ -477,7 +477,7 @@ class UserController extends BaseController
                     $email=Radius::GetUserName($email);
                     $json_show="VPN 信息<br>地址：".$node->server."<br>"."用户名：".$email."<br>密码：".$this->user->passwd."<br>支持方式：".$node->method."<br>备注：".$node->info;
 
-                    return $this->view()->assign('json_show', $json_show)->display('user/nodeinfovpn.tpl');
+                    return $this->view()->assign('json_show', $json_show)->display(Tools::getLanguagePath('user/nodeinfovpn.tpl'));
                 }
             break;
 
@@ -487,7 +487,7 @@ class UserController extends BaseController
                     $email=Radius::GetUserName($email);
                     $json_show="SSH 信息<br>地址：".$node->server."<br>"."用户名：".$email."<br>密码：".$this->user->passwd."<br>支持方式：".$node->method."<br>备注：".$node->info;
 
-                    return $this->view()->assign('json_show', $json_show)->display('user/nodeinfossh.tpl');
+                    return $this->view()->assign('json_show', $json_show)->display(Tools::getLanguagePath('user/nodeinfossh.tpl'));
                 }
 
             break;
@@ -501,7 +501,7 @@ class UserController extends BaseController
                     $token = LinkController::GenerateCode(3, $exp[0], $exp[1], 0, $this->user->id);
                     $json_show="PAC 信息<br>地址：".Config::get('baseUrl')."/link/".$token."<br>"."用户名：".$email."<br>密码：".$this->user->passwd."<br>支持方式：".$node->method."<br>备注：".$node->info;
 
-                    return $this->view()->assign('json_show', $json_show)->display('user/nodeinfopac.tpl');
+                    return $this->view()->assign('json_show', $json_show)->display(Tools::getLanguagePath('user/nodeinfopac.tpl'));
                 }
 
             break;
@@ -512,7 +512,7 @@ class UserController extends BaseController
                     $email=Radius::GetUserName($email);
                     $json_show="APN 信息<br>下载地址：".$node->server."<br>"."用户名：".$email."<br>密码：".$this->user->passwd."<br>支持方式：".$node->method."<br>备注：".$node->info;
 
-                    return $this->view()->assign('json_show', $json_show)->display('user/nodeinfoapn.tpl');
+                    return $this->view()->assign('json_show', $json_show)->display(Tools::getLanguagePath('user/nodeinfoapn.tpl'));
                 }
 
             break;
@@ -524,7 +524,7 @@ class UserController extends BaseController
 
                     $json_show="Anyconnect 信息<br>地址：".$node->server."<br>"."用户名：".$email."<br>密码：".$this->user->passwd."<br>支持方式：".$node->method."<br>备注：".$node->info;
 
-                    return $this->view()->assign('json_show', $json_show)->display('user/nodeinfoanyconnect.tpl');
+                    return $this->view()->assign('json_show', $json_show)->display(Tools::getLanguagePath('user/nodeinfoanyconnect.tpl'));
                 }
 
 
@@ -542,7 +542,7 @@ class UserController extends BaseController
 
                     $json_show="APN 文件<br>移动地址：".Config::get('baseUrl')."/link/".$token_cmcc."<br>联通地址：".Config::get('baseUrl')."/link/".$token_cnunc."<br>电信地址：".Config::get('baseUrl')."/link/".$token_ctnet."<br>"."用户名：".$email."<br>密码：".$this->user->passwd."<br>支持方式：".$node->method."<br>备注：".$node->info;
 
-                    return $this->view()->assign('json_show', $json_show)->display('user/nodeinfoapndownload.tpl');
+                    return $this->view()->assign('json_show', $json_show)->display(Tools::getLanguagePath('user/nodeinfoapndownload.tpl'));
                 }
 
 
@@ -556,7 +556,7 @@ class UserController extends BaseController
                     $json_show="PAC Plus 信息<br>PAC 地址：".Config::get('baseUrl')."/link/".$token."<br>支持方式：".$node->method."<br>备注：".$node->info;
 
 
-                    return $this->view()->assign('json_show', $json_show)->display('user/nodeinfopacplus.tpl');
+                    return $this->view()->assign('json_show', $json_show)->display(Tools::getLanguagePath('user/nodeinfopacplus.tpl'));
                 }
 
 
@@ -570,7 +570,7 @@ class UserController extends BaseController
                     $token_ios = LinkController::GenerateCode(8, $node->server, ($this->user->port-20000), 1, $this->user->id);
                     $json_show="PAC Plus Plus信息<br>PAC 一般地址：".Config::get('baseUrl')."/link/".$token."<br>PAC iOS 地址：".Config::get('baseUrl')."/link/".$token_ios."<br>"."备注：".$node->info;
 
-                    return $this->view()->assign('json_show', $json_show)->display('user/nodeinfopacpp.tpl');
+                    return $this->view()->assign('json_show', $json_show)->display(Tools::getLanguagePath('user/nodeinfopacpp.tpl'));
                 }
 
 
@@ -579,7 +579,7 @@ class UserController extends BaseController
 
             case 10:
                 if ((($user->class>=$node->node_class&&($user->node_group==$node->node_group||$node->node_group==0))||$user->is_admin)&&($node->node_bandwidth_limit==0||$node->node_bandwidth<$node->node_bandwidth_limit)) {
-                    return $this->view()->assign('node', $node)->assign('user', $user)->assign('mu', $mu)->assign('relay_rule_id', $relay_rule_id)->registerClass("URL", "App\Utils\URL")->display('user/nodeinfo.tpl');
+                    return $this->view()->assign('node', $node)->assign('user', $user)->assign('mu', $mu)->assign('relay_rule_id', $relay_rule_id)->registerClass("URL", "App\Utils\URL")->display(Tools::getLanguagePath('user/nodeinfo.tpl'));
                 }
                 break;
             default:
@@ -678,7 +678,7 @@ class UserController extends BaseController
 
 
 
-        return $this->view()->assign("userip",$userip)->assign("userloginip", $userloginip)->assign("paybacks", $paybacks)->display('user/profile.tpl');
+        return $this->view()->assign("userip",$userip)->assign("userloginip", $userloginip)->assign("paybacks", $paybacks)->display(Tools::getLanguagePath('user/profile.tpl'));
     }
 
 
@@ -688,7 +688,7 @@ class UserController extends BaseController
 
 
 
-        return $this->view()->assign("anns", $Anns)->display('user/announcement.tpl');
+        return $this->view()->assign("anns", $Anns)->display(Tools::getLanguagePath('user/announcement.tpl'));
     }
 
 
@@ -712,7 +712,7 @@ class UserController extends BaseController
         $config_service = new Config();
 
         return $this->view()->assign('user', $this->user)->assign('themes', $themes)->assign('isBlock', $isBlock)->assign('Block', $Block)->assign('bind_token', $bind_token)->assign('telegram_bot', Config::get('telegram_bot'))->assign('config_service', $config_service)
-                    ->registerClass("URL", "App\Utils\URL")->display('user/edit.tpl');
+                    ->registerClass("URL", "App\Utils\URL")->display(Tools::getLanguagePath('user/edit.tpl'));
     }
 
 
@@ -727,7 +727,7 @@ class UserController extends BaseController
 
 
 
-        return $this->view()->assign('codes', $codes)->display('user/invite.tpl');
+        return $this->view()->assign('codes', $codes)->display(Tools::getLanguagePath('user/invite.tpl'));
     }
 
     public function doInvite($request, $response, $args)
@@ -754,7 +754,7 @@ class UserController extends BaseController
 
     public function sys()
     {
-        return $this->view()->assign('ana', "")->display('user/sys.tpl');
+        return $this->view()->assign('ana', "")->display(Tools::getLanguagePath('user/sys.tpl'));
     }
 
     public function updatePassword($request, $response, $args)
@@ -831,7 +831,7 @@ class UserController extends BaseController
         $shops = Shop::where("status", 1)->paginate(15, ['*'], 'page', $pageNum);
         $shops->setPath('/user/shop');
 
-        return $this->view()->assign('shops', $shops)->display('user/shop.tpl');
+        return $this->view()->assign('shops', $shops)->display(Tools::getLanguagePath('user/shop.tpl'));
     }
 
     public function CouponCheck($request, $response, $args)
@@ -969,7 +969,7 @@ class UserController extends BaseController
         $shops = Bought::where("userid", $this->user->id)->orderBy("id", "desc")->paginate(15, ['*'], 'page', $pageNum);
         $shops->setPath('/user/bought');
 
-        return $this->view()->assign('shops', $shops)->display('user/bought.tpl');
+        return $this->view()->assign('shops', $shops)->display(Tools::getLanguagePath('user/bought.tpl'));
     }
 
     public function deleteBoughtGet($request, $response, $args)
@@ -1007,12 +1007,12 @@ class UserController extends BaseController
         $tickets = Ticket::where("userid", $this->user->id)->where("rootid", 0)->orderBy("datetime", "desc")->paginate(15, ['*'], 'page', $pageNum);
         $tickets->setPath('/user/ticket');
 
-        return $this->view()->assign('tickets', $tickets)->display('user/ticket.tpl');
+        return $this->view()->assign('tickets', $tickets)->display(Tools::getLanguagePath('user/ticket.tpl'));
     }
 
     public function ticket_create($request, $response, $args)
     {
-        return $this->view()->display('user/ticket_create.tpl');
+        return $this->view()->display(Tools::getLanguagePath('user/ticket_create.tpl'));
     }
 
     public function ticket_add($request, $response, $args)
@@ -1162,7 +1162,7 @@ class UserController extends BaseController
         $ticketset->setPath('/user/ticket/'.$id."/view");
 
 
-        return $this->view()->assign('ticketset', $ticketset)->assign("id", $id)->display('user/ticket_view.tpl');
+        return $this->view()->assign('ticketset', $ticketset)->assign("id", $id)->display(Tools::getLanguagePath('user/ticket_view.tpl'));
     }
 
 
@@ -1444,7 +1444,7 @@ class UserController extends BaseController
 
     public function kill($request, $response, $args)
     {
-        return $this->view()->display('user/kill.tpl');
+        return $this->view()->display(Tools::getLanguagePath('user/kill.tpl'));
     }
 
     public function handleKill($request, $response, $args)
@@ -1472,7 +1472,7 @@ class UserController extends BaseController
     public function trafficLog($request, $response, $args)
     {
         $traffic=TrafficLog::where('user_id', $this->user->id)->where("log_time", ">", (time()-3*86400))->orderBy('id', 'desc')->get();
-        return $this->view()->assign('logs', $traffic)->display('user/trafficlog.tpl');
+        return $this->view()->assign('logs', $traffic)->display(Tools::getLanguagePath('user/trafficlog.tpl'));
     }
 
 
@@ -1486,7 +1486,7 @@ class UserController extends BaseController
         }
         $logs = DetectRule::paginate(15, ['*'], 'page', $pageNum);
         $logs->setPath('/user/detect');
-        return $this->view()->assign('rules', $logs)->display('user/detect_index.tpl');
+        return $this->view()->assign('rules', $logs)->display(Tools::getLanguagePath('user/detect_index.tpl'));
     }
 
     public function detect_log($request, $response, $args)
@@ -1497,12 +1497,12 @@ class UserController extends BaseController
         }
         $logs = DetectLog::orderBy('id', 'desc')->where('user_id', $this->user->id)->paginate(15, ['*'], 'page', $pageNum);
         $logs->setPath('/user/detect/log');
-        return $this->view()->assign('logs', $logs)->display('user/detect_log.tpl');
+        return $this->view()->assign('logs', $logs)->display(Tools::getLanguagePath('user/detect_log.tpl'));
     }
 
     public function disable($request, $response, $args)
     {
-        return $this->view()->display('user/disable.tpl');
+        return $this->view()->display(Tools::getLanguagePath('user/disable.tpl'));
     }
 
     public function telegram_reset($request, $response, $args)

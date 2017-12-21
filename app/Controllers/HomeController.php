@@ -40,12 +40,12 @@ class HomeController extends BaseController
 
     public function tos()
     {
-        return $this->view()->display('tos.tpl');
+        return $this->view()->display(Tools::getLanguagePath('tos.tpl'));
     }
     
     public function staff()
     {
-        return $this->view()->display('staff.tpl');
+        return $this->view()->display(Tools::getLanguagePath('staff.tpl'));
     }
     
     public function telegram($request, $response, $args)
@@ -73,7 +73,7 @@ class HomeController extends BaseController
         }
         
         $newResponse = $response->withStatus(404);
-        $newResponse->getBody()->write($this->view()->assign("pic", "/theme/".(Auth::getUser()->isLogin==false?Config::get("theme"):Auth::getUser()->theme)."/images/error/404/".$pic)->display('404.tpl'));
+        $newResponse->getBody()->write($this->view()->assign("pic", "/theme/".(Auth::getUser()->isLogin==false?Config::get("theme"):Auth::getUser()->theme)."/images/error/404/".$pic)->display(Tools::getLanguagePath('404.tpl')));
         return $newResponse;
     }
     
@@ -87,7 +87,7 @@ class HomeController extends BaseController
         }
         
         $newResponse = $response->withStatus(405);
-        $newResponse->getBody()->write($this->view()->assign("pic", "/theme/".(Auth::getUser()->isLogin==false?Config::get("theme"):Auth::getUser()->theme)."/images/error/405/".$pic)->display('405.tpl'));
+        $newResponse->getBody()->write($this->view()->assign("pic", "/theme/".(Auth::getUser()->isLogin==false?Config::get("theme"):Auth::getUser()->theme)."/images/error/405/".$pic)->display(Tools::getLanguagePath('405.tpl')));
         return $newResponse;
     }
     
@@ -101,7 +101,7 @@ class HomeController extends BaseController
         }
         
         $newResponse = $response->withStatus(500);
-        $newResponse->getBody()->write($this->view()->assign("pic", "/theme/".(Auth::getUser()->isLogin==false?Config::get("theme"):Auth::getUser()->theme)."/images/error/500/".$pic)->display('500.tpl'));
+        $newResponse->getBody()->write($this->view()->assign("pic", "/theme/".(Auth::getUser()->isLogin==false?Config::get("theme"):Auth::getUser()->theme)."/images/error/500/".$pic)->display(Tools::getLanguagePath('500.tpl')));
         return $newResponse;
     }
     
