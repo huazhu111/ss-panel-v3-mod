@@ -2,7 +2,7 @@
 
 
 
-{include file='user/main.tpl'}
+{include file='../main.tpl'}
 
 
 
