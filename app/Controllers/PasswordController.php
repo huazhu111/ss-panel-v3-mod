@@ -17,7 +17,7 @@ class PasswordController extends BaseController
 {
     public function reset()
     {
-        return $this->view()->display('password/reset.tpl');
+        return $this->view()->display(Tools::getLanguagePath('password/reset.tpl'));
     }
 
     public function handleReset($request, $response, $args)
@@ -41,7 +41,7 @@ class PasswordController extends BaseController
     public function token($request, $response, $args)
     {
         $token = $args['token'];
-        return $this->view()->assign('token', $token)->display('password/token.tpl');
+        return $this->view()->assign('token', $token)->display(Tools::getLanguagePath('password/token.tpl'));
     }
 
     public function handleToken($request, $response, $args)

@@ -108,7 +108,7 @@ class RelayController extends UserController
             }
         }
 
-        return $this->view()->assign('rules', $logs)->assign('relay_able_protocol_list', Config::getSupportParam('relay_able_protocol'))->assign('is_relay_able', $is_relay_able)->assign('pathset', $pathset)->display('user/relay/index.tpl');
+        return $this->view()->assign('rules', $logs)->assign('relay_able_protocol_list', Config::getSupportParam('relay_able_protocol'))->assign('is_relay_able', $is_relay_able)->assign('pathset', $pathset)->display(Tools::getLanguagePath('user/relay/index.tpl'));
     }
 
     public function create($request, $response, $args)
@@ -150,7 +150,7 @@ class RelayController extends UserController
 
         array_push($ports, $user->port);
 
-        return $this->view()->assign('source_nodes', $source_nodes)->assign('dist_nodes', $dist_nodes)->assign('ports', $ports)->display('user/relay/add.tpl');
+        return $this->view()->assign('source_nodes', $source_nodes)->assign('dist_nodes', $dist_nodes)->assign('ports', $ports)->display(Tools::getLanguagePath('user/relay/add.tpl'));
     }
 
     public function add($request, $response, $args)
@@ -298,7 +298,7 @@ class RelayController extends UserController
 
         array_push($ports, $user->port);
 
-        return $this->view()->assign('rule', $rule)->assign('source_nodes', $source_nodes)->assign('dist_nodes', $dist_nodes)->assign('ports', $ports)->display('user/relay/edit.tpl');
+        return $this->view()->assign('rule', $rule)->assign('source_nodes', $source_nodes)->assign('dist_nodes', $dist_nodes)->assign('ports', $ports)->display(Tools::getLanguagePath('user/relay/edit.tpl'));
     }
 
     public function update($request, $response, $args)
